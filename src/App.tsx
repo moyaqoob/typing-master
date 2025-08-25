@@ -1,4 +1,3 @@
-import { Info, Keyboard, Settings } from "lucide-react";
 import { TypingTest } from "./Components/page";
 function App() {
   return (

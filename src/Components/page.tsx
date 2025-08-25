@@ -1,4 +1,3 @@
-import { Info, Keyboard, Settings } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { chunkWords, sampleTexts } from "./lib/utils";
 
@@ -13,7 +12,6 @@ export const TypingTest = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [startTime, setStartTime] = useState(0);
-  const [endTime, setEndTime] = useState(0);
   const [errors, setErrors] = useState(0);
   const [timeLimit, setTimeLimit] = useState(60);
   const [timeLeft, setTimeLeft] = useState(60);
@@ -92,7 +90,6 @@ export const TypingTest = () => {
     setErrors(0);
     setTimeLeft(timeLimit);
     setStartTime(0);
-    setEndTime(0);
     setCurrentLine(0);
     setWpm(0);
     setAccuracy(100);
@@ -109,7 +106,6 @@ export const TypingTest = () => {
   const finishTest = () => {
     setIsFinished(true);
     setIsStarted(false);
-    setEndTime(Date.now());
 
     // Final calculations
     const timeElapsed = (Date.now() - startTime) / 1000 / 60;
@@ -176,18 +172,6 @@ export const TypingTest = () => {
       e.preventDefault();
     }
   };
-  const wordsPerLine = 10;
-  const line = chunkWords(currentText.split(" "), wordsPerLine);
-
-  // figure out which line we're on
-  const currline = lines.findIndex((line, i) => {
-    const lineStart = lines
-      .slice(0, i)
-      .reduce((acc, l) => acc + l.join(" ").length + (l.length > 0 ? 1 : 0), 0);
-
-    const lineEnd = lineStart + line.join(" ").length;
-    return currentIndex >= lineStart && currentIndex <= lineEnd;
-  });
 
   return (
     <div className="min-h-screen min-w-screen bg-[#d8d2c3] text-white p-4 overflow-hidden relative">
