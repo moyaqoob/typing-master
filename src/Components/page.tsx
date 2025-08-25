@@ -271,7 +271,7 @@ export const TypingTest = () => {
               </div>
             )}
 
-            <div className="text-3xl font-mono selection:bg-purple-500/30 overflow-hidden">
+            <div className="text-3xl min-w-6xl font-mono selection:bg-purple-500/30 overflow-hidden">
               {lines
                 .slice(currentLine, currentLine + 3)
                 .map((line, lineIndex) => {
